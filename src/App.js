@@ -5,7 +5,6 @@ import MemberEdit from "./Components/Members/EditMember"
 import MemberInfo from "./Components/Members/MemberInfo"
 import Container from "@mui/material/Container"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Grid, Paper } from "@mui/material/Grid"
 
 function App() {
   return (
