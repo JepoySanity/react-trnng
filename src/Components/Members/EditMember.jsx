@@ -1,11 +1,30 @@
 
 import * as React from "react";
-import { Link } from "react-router-dom"
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom"
 import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import CreateIcon from '@mui/icons-material/Create';
 
 export default function EditMember() {
+  const { member_id } = useParams();
+  const [userData, setUserData] = useState([]);
+
+  useEffect(()=>{
+
+    axios.get(`http://127.0.0.1:8000/api/member/${member_id}`)
+    .then(function (response) {
+      // handle success
+      setUserData(response.data)
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+
+  },[ member_id ])
+
   return (
     <>
       <Grid component={Paper} sx={{ p:4 }}>
@@ -18,39 +37,44 @@ export default function EditMember() {
           alignItems="center"
         >
         <form onSubmit={() => alert("saved")}>
+          <Typography ml={1}>Name</Typography>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
-            label="Name"
             variant="outlined"
+            value={userData.name}
           />
           <br />
+          <Typography ml={1}>Status</Typography>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
-            label="Status"
             variant="outlined"
+            value={userData.status}
           />
           <br />
+          <Typography ml={1}>Email</Typography>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
-            label="Email"
             variant="outlined"
+            value={userData.email}
           />
           <br />
+          <Typography ml={1}>Department</Typography>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
-            label="Department"
             variant="outlined"
+            value={userData.department}
           />
           <br />
+          <Typography ml={1}>Location</Typography>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
-            label="Location"
             variant="outlined"
+            value={userData.location}
           />
           <br />
           <Grid   

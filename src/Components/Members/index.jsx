@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table';
@@ -12,19 +13,22 @@ import { Link } from 'react-router-dom';
 import { Grid, Typography } from '@mui/material';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
-function createData(id, name, status, email, department, location) {
-  return { id, name, status, email, department, location };
-}
 
 export default function Index() {
   const [users, setUsers] = useState([]);
 
   useEffect(()=>{
-    const rows = [
-      createData('014133','John Jefferson Factoran', 'active', 'john.factoran@awsys-i.com', 'Dev F', 'Alabang'),
-      createData('014134','Christian Gil Aquino', 'active', 'christian.aquino@awsys-i.com', 'Dev F', 'Makati'),
-    ];
-    setUsers(rows)
+
+    axios.get('http://127.0.0.1:8000/api/members')
+    .then(function (response) {
+      // handle success
+      setUsers(response.data)
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+
   },[])
 
   return (
