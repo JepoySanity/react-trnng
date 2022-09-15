@@ -1,6 +1,6 @@
 {
   "auth": {
-    "membersapie6491a87": {
+    "membersapib0a489b4": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -9,7 +9,6 @@
         "socialProviders": [],
         "usernameAttributes": [],
         "signupAttributes": [
-          "ADDRESS",
           "EMAIL"
         ],
         "passwordProtectionSettings": {
