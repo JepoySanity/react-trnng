@@ -29,7 +29,7 @@ export default function EditMember() {
     <>
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">Edit Member</Typography>
-        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/members"><CancelIcon/>&ensp;Cancel</Button>
+        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/"><CancelIcon/>&ensp;Cancel</Button>
         <Grid
           container
           spacing={0}
