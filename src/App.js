@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/* <Route path="/" element={ <Login/> } /> */}
-            <Route path="/" element={ <Members/> } />
+            <Route path="/members" element={ <Members/> } />
             <Route path="/member/new" element={ <MemberNew/> } />
             <Route path="/member/edit/:member_id" element={ <MemberEdit/> } />
             <Route path="/member/info/:member_id" element={ <MemberInfo/> } />
