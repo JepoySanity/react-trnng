@@ -1,7 +1,8 @@
 // import Login from "./Components/Login"
 import Amplify from "aws-amplify"
 import config from "./aws-exports"
-import { withAuthenticator, AmplifySignout } from "@aws-amplify/ui-react"
+import { withAuthenticator } from "@aws-amplify/ui-react"
+import { AmplifySignOut } from "@aws-amplify/ui-react-v1"
 import Members from "./Components/Members"
 import MemberNew from "./Components/Members/NewMember"
 import MemberEdit from "./Components/Members/EditMember"
@@ -19,7 +20,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/* <Route path="/" element={ <Login/> } /> */}
-            <AmplifySignout />
+            <AmplifySignOut />
             <Route path="/" element={ <Members/> } />
             <Route path="/members/new" element={ <MemberNew/> } />
             <Route path="/members/edit/:member_id" element={ <MemberEdit/> } />
