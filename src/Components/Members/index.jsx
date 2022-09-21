@@ -31,7 +31,7 @@ export default function Index() {
     // })
     
     API.get('membersAPI', '/members/name')
-      .then(membersRes => console.log(membersRes))
+      .then(membersRes => setUsers(membersRes))
 
   },[])
 
