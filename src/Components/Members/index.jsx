@@ -35,7 +35,7 @@ export default function Index() {
     <>
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">LIST OF MEMBERS</Typography>
-        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;New</Button>
+        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/members/new"><PersonAddAltIcon/>&ensp;New</Button>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -64,7 +64,7 @@ export default function Index() {
                   <TableCell align="right">
                     <Button variant='outlined' component={Link} 
                       to={{ 
-                        pathname:`/member/edit/${row.id}`,
+                        pathname:`/members/edit/${row.id}`,
                         state: {users: users}
                       }}
                     >
