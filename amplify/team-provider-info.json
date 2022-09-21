@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-memberlistingapp-dev-134524-unauthRole",
       "StackName": "amplify-memberlistingapp-dev-134524",
       "StackId": "arn:aws:cloudformation:us-east-1:631550694525:stack/amplify-memberlistingapp-dev-134524/98a194c0-3970-11ed-8779-0a99995fe527",
-      "AmplifyAppId": "dhd7igftovw0h"
+      "AmplifyAppId": "dhd7igftovw0h",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-memberlistingapp-dev-134524-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "memberlistingapp926990f0": {}
+      },
+      "function": {
+        "membersLambda": {
+          "deploymentBucketName": "amplify-memberlistingapp-dev-134524-deployment",
+          "s3Key": "amplify-builds/membersLambda-37586663594231767546-build.zip"
+        }
       }
     }
   }

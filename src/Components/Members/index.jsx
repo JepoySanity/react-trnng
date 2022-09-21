@@ -1,5 +1,6 @@
 import * as React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { API } from 'aws-amplify'
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table';
@@ -19,15 +20,18 @@ export default function Index() {
 
   useEffect(()=>{
 
-    axios.get('http://127.0.0.1:8000/api/members')
-    .then(function (response) {
-      // handle success
-      setUsers(response.data)
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
+    // axios.get('http://127.0.0.1:8000/api/members')
+    // .then(function (response) {
+    //   // handle success
+    //   setUsers(response.data)
+    // })
+    // .catch(function (error) {
+    //   // handle error
+    //   console.log(error);
+    // })
+    
+    API.get('membersAPI', '/members/name')
+      .then(membersRes => console.log(membersRes))
 
   },[])
 
