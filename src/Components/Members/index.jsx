@@ -64,7 +64,7 @@ export default function Index() {
                   <TableCell align="right">
                     <Button variant='outlined' component={Link} 
                       to={{ 
-                        pathname:`/members/edit/${row.id}`,
+                        pathname:`/member/edit/${row.id}`,
                         state: {users: users}
                       }}
                     >
