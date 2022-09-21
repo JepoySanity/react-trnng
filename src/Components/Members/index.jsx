@@ -20,19 +20,9 @@ export default function Index() {
 
   useEffect(()=>{
 
-    // axios.get('http://127.0.0.1:8000/api/members')
-    // .then(function (response) {
-    //   // handle success
-    //   setUsers(response.data)
-    // })
-    // .catch(function (error) {
-    //   // handle error
-    //   console.log(error);
-    // })
-    
     API.get('membersAPI', '/members/name')
       .then(membersRes => setUsers(membersRes))
-
+      
   },[])
 
   return (
