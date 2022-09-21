@@ -1,6 +1,6 @@
 {
   "auth": {
-    "membersapib0a489b4": {
+    "memberlistingapp926990f0": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
