@@ -24,11 +24,13 @@ export default function NewMember() {
 
   //on change handler
   const handleOnChange = (e) => {
-    setMember({ [e.target.id]: e.target.value })
+    setMember({...member, [e.target.id]: e.target.value })
   }
 
   //on form submit handler
   const handleSubmit = (e) => {
+    
+    //prevent default behavior upon form submission
     e.preventDefault();
 
     //generate uuid
@@ -37,12 +39,12 @@ export default function NewMember() {
     //post request to API
     axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', 
     {
-      id: 'asdfasdfadsf123444123',
-      name: 'asdfasdfasdf',
-      status: 'affaff',
-      email: 'asdfg@gg.com',
-      department: 'devf',
-      location: 'test'
+      id: uid,
+      name: member.name,
+      status: member.status,
+      email: member.email,
+      department: member.department,
+      location: member.location
     }).then((res)=>{console.log(res)});
     
     //reset form values
