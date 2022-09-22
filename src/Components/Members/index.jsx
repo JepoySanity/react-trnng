@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import axios from 'axios';
-import { API } from 'aws-amplify'
+import { API } from 'aws-amplify';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table';
@@ -22,7 +22,7 @@ export default function Index() {
 
     API.get('membersAPI', '/members/name')
       .then(membersRes => setUsers(membersRes))
-      
+
   },[])
 
   return (

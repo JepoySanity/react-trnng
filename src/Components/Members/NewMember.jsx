@@ -2,7 +2,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom"
 import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
-import { API } from 'aws-amplify'
+// import { API } from 'aws-amplify'
+import axios from "axios";
 import CancelIcon from '@mui/icons-material/Cancel';
 import CreateIcon from '@mui/icons-material/Create';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,16 +35,21 @@ export default function NewMember() {
     const uid = uuidv4();
     
     //post request to API
-    API.post('membersAPI', '/members', {
-      body: {
-        id: uid,
-        name: member.name,
-        status: member.status,
-        email: member.email,
-        department: member.department,
-        location: member.location
-      }
-    }).then();
+    axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', 
+    {
+      // id: uid,
+      // name: member.name,
+      // status: member.status,
+      // email: member.email,
+      // department: member.department,
+      // location: member.location  
+      id: 'asdfasdfadsf123444123',
+      name: 'asdfasdfasdf',
+      status: 'affaff',
+      email: 'asdfg@gg.com',
+      department: 'devf',
+      location: 'test'
+    }).then((res)=>{console.log(res)});
     
     //reset form values
     setMember(defaultVal);
