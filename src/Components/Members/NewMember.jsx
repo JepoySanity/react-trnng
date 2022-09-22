@@ -106,8 +106,9 @@ export default function NewMember() {
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          {formik.errors.name ? <p>{formik.errors.name}</p> : null}
+          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.name}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -117,8 +118,9 @@ export default function NewMember() {
             name="status"
             value={formik.values.status}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          {formik.errors.status ? <p>{formik.errors.status}</p> : null}
+          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.status}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -128,8 +130,9 @@ export default function NewMember() {
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          {formik.errors.email ? <p>{formik.errors.email}</p> : null}
+          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.email}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -139,8 +142,9 @@ export default function NewMember() {
             name="department"
             value={formik.values.department}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          {formik.errors.department ? <p>{formik.errors.department}</p> : null}
+          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.department}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -150,8 +154,9 @@ export default function NewMember() {
             name="location"
             value={formik.values.location}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          {formik.errors.location ? <p>{formik.errors.location}</p> : null}
+          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.location}</p> : null}
           <br />
           <Grid   
             container
