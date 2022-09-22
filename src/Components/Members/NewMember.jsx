@@ -6,50 +6,85 @@ import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
 import axios from "axios";
 import CancelIcon from '@mui/icons-material/Cancel';
 import CreateIcon from '@mui/icons-material/Create';
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NewMember() {
 
-  //default state value
-  const defaultVal = {
-    name: '',
-    status: '',
-    email: '',
-    department: '',
-    location: ''
-  }
+  // //default state value
+  // const defaultVal = {
+  //   name: '',
+  //   status: '',
+  //   email: '',
+  //   department: '',
+  //   location: ''
+  // }
 
-  //set default state value
-  const [member, setMember] = React.useState(defaultVal);
+  // //set default state value
+  // const [member, setMember] = React.useState(defaultVal);
 
-  //on change handler
-  const handleOnChange = (e) => {
-    setMember({...member, [e.target.id]: e.target.value })
-  }
+  // //on change handler
+  // const handleOnChange = (e) => {
+  //   setMember({...member, [e.target.id]: e.target.value })
+  // }
 
-  //on form submit handler
-  const handleSubmit = (e) => {
+  // //on form submit handler
+  // const handleSubmit = (e) => {
+
+  //   //prevent default behavior upon form submission
+  //   e.preventDefault();
+
+  //   //generate uuid
+  //   const uid = uuidv4();
     
-    //prevent default behavior upon form submission
-    e.preventDefault();
+  //   //post request to API
+  //   axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', 
+  //   {
+  //     id: uid,
+  //     name: member.name,
+  //     status: member.status,
+  //     email: member.email,
+  //     department: member.department,
+  //     location: member.location
+  //   }).then((res)=>{console.log(res)});
+    
+  //   //reset form values
+  //   setMember(defaultVal);
+  // }
 
-    //generate uuid
-    const uid = uuidv4();
-    
-    //post request to API
-    axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', 
-    {
-      id: uid,
-      name: member.name,
-      status: member.status,
-      email: member.email,
-      department: member.department,
-      location: member.location
-    }).then((res)=>{console.log(res)});
-    
-    //reset form values
-    setMember(defaultVal);
-  }
+  const formik = useFormik({
+    //initial value of the form state
+    initialValues: {
+      name: '',
+      status: '',
+      email: '',
+      department: '',
+      location: '',
+    },
+    //schema for the input validation rules
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .max(30,"name must not exceed 30 characters")
+        .required("required"),
+      status: Yup.string()
+        .max(8,"name must not exceed 8 characters")
+        .required("required"),
+      email: Yup.string()
+        .email("must be a valid email")
+        .required("required"),
+      department: Yup.string()
+        .max(6,"name must not exceed 6 characters")
+        .required("required"),
+      location: Yup.string()
+        .max(15,"name must not exceed 15 characters")
+        .required("required"),
+    }),
+    //form onSubmit handler
+    onSubmit: (values) => {
+      console.log(values);
+    }
+  });
 
   return (
     <>
@@ -62,56 +97,61 @@ export default function NewMember() {
           direction="column"
           alignItems="center"
         >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
             label="Name"
             variant="outlined"
-            id="name"
-            value={member.name}
-            onChange={handleOnChange}
+            name="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
           />
+          {formik.errors.name ? <p>{formik.errors.name}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
             label="Status"
             variant="outlined"
-            id="status"
-            value={member.status}
-            onChange={handleOnChange}
+            name="status"
+            value={formik.values.status}
+            onChange={formik.handleChange}
           />
+          {formik.errors.status ? <p>{formik.errors.status}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
             label="Email"
             variant="outlined"
-            id="email"
-            value={member.email}
-            onChange={handleOnChange}
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
           />
+          {formik.errors.email ? <p>{formik.errors.email}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
             label="Department"
             variant="outlined"
-            id="department"
-            value={member.department}
-            onChange={handleOnChange}
+            name="department"
+            value={formik.values.department}
+            onChange={formik.handleChange}
           />
+          {formik.errors.department ? <p>{formik.errors.department}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
             type="text"
             label="Location"
             variant="outlined"
-            id="location"
-            value={member.location}
-            onChange={handleOnChange}
+            name="location"
+            value={formik.values.location}
+            onChange={formik.handleChange}
           />
+          {formik.errors.location ? <p>{formik.errors.location}</p> : null}
           <br />
           <Grid   
             container
