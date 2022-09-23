@@ -98,6 +98,8 @@ export default function NewMember() {
       }).then((res)=>{
         console.log(res)
         formik.resetForm();
+      }).catch((err)=>{
+        console.log(err);
       });
     }
   });
