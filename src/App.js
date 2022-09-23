@@ -1,8 +1,7 @@
 // import Login from "./Components/Login"
-import Amplify from "aws-amplify"
+import { Amplify } from "aws-amplify"
 import config from "./aws-exports"
 import { withAuthenticator } from "@aws-amplify/ui-react"
-import { AmplifySignOut } from "@aws-amplify/ui-react-v1"
 import Members from "./Components/Members"
 import MemberNew from "./Components/Members/NewMember"
 import MemberEdit from "./Components/Members/EditMember"
@@ -11,6 +10,7 @@ import Container from "@mui/material/Container"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import '@aws-amplify/ui-react/styles.css'
 import { ToastContainer } from "react-toastify"
+import { Navbar } from "./Components/Navbar"
 
 Amplify.configure(config)
 
@@ -20,7 +20,8 @@ function App() {
       <ToastContainer
         position="top-center"
         autoClose={5000}
-      />
+        />
+      <Navbar/>
       <Container maxWidth="lg" sx={{ mt:8 }}>
         <BrowserRouter>
           <Routes>
@@ -31,9 +32,6 @@ function App() {
             <Route path="/members/info/:member_id" element={ <MemberInfo/> } />
           </Routes>
         </BrowserRouter>
-      </Container>
-      <Container maxWidth="sm" sx={{ mt:4 }}>
-        <AmplifySignOut />
       </Container>
     </div>
   );
