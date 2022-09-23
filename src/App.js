@@ -10,12 +10,17 @@ import MemberInfo from "./Components/Members/MemberInfo"
 import Container from "@mui/material/Container"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import '@aws-amplify/ui-react/styles.css'
+import { ToastContainer } from "react-toastify"
 
 Amplify.configure(config)
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+      />
       <Container maxWidth="lg" sx={{ mt:8 }}>
         <BrowserRouter>
           <Routes>

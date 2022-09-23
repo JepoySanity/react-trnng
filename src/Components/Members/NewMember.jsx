@@ -1,56 +1,15 @@
-
 import * as React from "react";
 import { Link } from "react-router-dom"
 import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
-// import { API } from 'aws-amplify'
+import { useFormik } from "formik";
+import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
 import axios from "axios";
 import CreateIcon from '@mui/icons-material/Create';
-import { useFormik } from "formik";
 import * as Yup from "yup";
-import { v4 as uuidv4 } from 'uuid';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function NewMember() {
-
-  // //default state value
-  // const defaultVal = {
-  //   name: '',
-  //   status: '',
-  //   email: '',
-  //   department: '',
-  //   location: ''
-  // }
-
-  // //set default state value
-  // const [member, setMember] = React.useState(defaultVal);
-
-  // //on change handler
-  // const handleOnChange = (e) => {
-  //   setMember({...member, [e.target.id]: e.target.value })
-  // }
-
-  // //on form submit handler
-  // const handleSubmit = (e) => {
-
-  //   //prevent default behavior upon form submission
-  //   e.preventDefault();
-
-  //   //generate uuid
-  //   const uid = uuidv4();
-    
-  //   //post request to API
-  //   axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', 
-  //   {
-  //     id: uid,
-  //     name: member.name,
-  //     status: member.status,
-  //     email: member.email,
-  //     department: member.department,
-  //     location: member.location
-  //   }).then((res)=>{console.log(res)});
-    
-  //   //reset form values
-  //   setMember(defaultVal);
-  // }
 
   const formik = useFormik({
     //initial value of the form state
@@ -85,8 +44,10 @@ export default function NewMember() {
     onSubmit: (values) => {
       //generate uuid
       const uid = uuidv4();
+      //notify user that request is being created
+      const toast_id = toast.loading('creating user');
       
-      //post request to API
+      //post request to amazon API
       axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', {
         id: uid,
         name: values.name,
@@ -95,10 +56,24 @@ export default function NewMember() {
         department: values.department,
         location: values.location
       }).then((res)=>{
-        console.log(res)
+        //update notifaction as success
+        toast.update(toast_id, 
+          { 
+            render: "User created!", 
+            type: "success", 
+            isLoading: false, 
+            autoClose: 5000 
+          });
         formik.resetForm();
       }).catch((err)=>{
-        console.log(err);
+        //update notifaction as error
+        toast.update(toast_id, 
+          { 
+            render: "An error occured, please try again later", 
+            type: "error", 
+            isLoading: false, 
+            autoClose: 5000 
+          });
       });
     }
   });
@@ -125,7 +100,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.name}</p> : null}
+          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.name}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -137,7 +112,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.status}</p> : null}
+          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.status}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -149,7 +124,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.email}</p> : null}
+          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.email}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -161,7 +136,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.department}</p> : null}
+          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.department}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -173,7 +148,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.location}</p> : null}
+          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.location}</p> : null}
           <br />
           <Grid   
             container
