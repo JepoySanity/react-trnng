@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
-import CancelIcon from '@mui/icons-material/Cancel';
 import CreateIcon from '@mui/icons-material/Create';
 
 export default function EditMember() {
@@ -29,7 +28,7 @@ export default function EditMember() {
     <>
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">Edit Member</Typography>
-        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/"><CancelIcon/>&ensp;Cancel</Button>
+        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/">Back</Button>
         <Grid
           container
           spacing={0}

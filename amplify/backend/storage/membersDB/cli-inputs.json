@@ -1,0 +1,14 @@
+{
+  "resourceName": "membersDB",
+  "tableName": "members",
+  "partitionKey": {
+    "fieldName": "name",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "status",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
