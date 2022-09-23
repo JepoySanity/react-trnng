@@ -62,6 +62,7 @@ export default function NewMember() {
       department: '',
       location: '',
     },
+
     //schema for the input validation rules
     validationSchema: Yup.object({
       name: Yup.string()
@@ -80,9 +81,24 @@ export default function NewMember() {
         .max(15,"name must not exceed 15 characters")
         .required("required"),
     }),
+
     //form onSubmit handler
     onSubmit: (values) => {
-      console.log(values);
+      //generate uuid
+      const uid = uuidv4();
+      
+      //post request to API
+      axios.post('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members', {
+        id: uid,
+        name: values.name,
+        status: values.status,
+        email: values.email,
+        department: values.department,
+        location: values.location
+      }).then((res)=>{
+        console.log(res)
+        formik.resetForm();
+      });
     }
   });
 
@@ -108,7 +124,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.name}</p> : null}
+          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.name}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -120,7 +136,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.status}</p> : null}
+          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.status}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -132,7 +148,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.email}</p> : null}
+          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.email}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -144,7 +160,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.department}</p> : null}
+          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.department}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -156,7 +172,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '4px'}}>{formik.errors.location}</p> : null}
+          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '4px', marginTop: '-2px'}}>{formik.errors.location}</p> : null}
           <br />
           <Grid   
             container
