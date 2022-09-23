@@ -10,7 +10,6 @@ import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function NewMember() {
-
   const formik = useFormik({
     //initial value of the form state
     initialValues: {
@@ -62,7 +61,7 @@ export default function NewMember() {
             render: "User created!", 
             type: "success", 
             isLoading: false, 
-            autoClose: 5000 
+            autoClose: 3000 
           });
         formik.resetForm();
       }).catch((err)=>{
@@ -72,7 +71,7 @@ export default function NewMember() {
             render: "An error occured, please try again later", 
             type: "error", 
             isLoading: false, 
-            autoClose: 5000 
+            autoClose: 3000 
           });
       });
     }
