@@ -27,8 +27,8 @@ function App() {
           <Routes>
             {/* <Route path="/" element={ <Login/> } /> */}
             <Route path="/" element={ <Members/> } />
-            <Route path="/members/new" element={ <MemberNew/> } />
-            <Route path="/members/edit/:member_id" element={ <MemberEdit/> } />
+            <Route path="/member/new" element={ <MemberNew/> } />
+            <Route path="/member/edit/:member_id" element={ <MemberEdit/> } />
             <Route path="/members/info/:member_id" element={ <MemberInfo/> } />
           </Routes>
         </BrowserRouter>

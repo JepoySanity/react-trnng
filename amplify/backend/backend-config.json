@@ -29,6 +29,10 @@
     "membersDB": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
+    },
+    "newMembersDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
     }
   },
   "function": {
@@ -50,6 +54,25 @@
           }
         }
       ]
+    },
+    "newMembersLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "newMembersDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
     }
   },
   "api": {
@@ -60,6 +83,20 @@
         {
           "category": "function",
           "resourceName": "membersLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "newMembersAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "newMembersLambda",
           "attributes": [
             "Name",
             "Arn"

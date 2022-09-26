@@ -1,0 +1,10 @@
+{
+  "resourceName": "newMembersDB",
+  "tableName": "new_members_tb",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

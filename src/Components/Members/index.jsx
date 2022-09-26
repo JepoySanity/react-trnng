@@ -17,23 +17,23 @@ import { Spinner } from '../Spinner';
 
 
 export default function Index() {
-  const [users, setUsers] = useState([]);
-  const [disableBack, setDisableBack] = useState(false);
+  const [members, setMembers] = useState([]);
+  const [disableCreate, setDisableCreate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{
     setIsLoading(true);
-    setDisableBack(true)
-    axios.get('https://2lg82xqv8b.execute-api.us-east-1.amazonaws.com/judye/members/name')
+    setDisableCreate(true)
+    axios.get('https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/id')
       .then((response)=>{
-        setUsers(response.data);
+        setMembers(response.data);
         setIsLoading(false);
-        setDisableBack(false)
+        setDisableCreate(false)
       })
       .catch((err)=>{
         console.log(err);
         setIsLoading(false);
-        setDisableBack(false)
+        setDisableCreate(false)
       });
   },[])
 
@@ -41,10 +41,10 @@ export default function Index() {
     <>
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">LIST OF MEMBERS</Typography>
-        {disableBack ? 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/members/new" disabled><PersonAddAltIcon/>&ensp;New</Button>
+        {disableCreate ? 
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;New</Button>
         : 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/members/new"><PersonAddAltIcon/>&ensp;New</Button>
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;New</Button>
         }
         <TableContainer component={Paper}>
           {isLoading ? <Spinner/> :
@@ -60,7 +60,7 @@ export default function Index() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {users.map((row) => (
+                {members.map((row) => (
                   <TableRow
                     key={row.name}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -76,7 +76,7 @@ export default function Index() {
                       <Button variant='outlined' component={Link} 
                         to={{ 
                           pathname:`/member/edit/${row.id}`,
-                          state: {users: users}
+                          state: {members: members}
                         }}
                       >
                         edit
