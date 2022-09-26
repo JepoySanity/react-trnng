@@ -39,7 +39,7 @@ export default function NewMember() {
   const formik = useFormik({
     //enable initial state reinitialization
     enableReinitialize: true,
-    
+
     //initial value of the form state
     initialValues: {
       name: member.name,
@@ -73,7 +73,7 @@ export default function NewMember() {
       //generate uuid
       const uid = uuidv4();
       //notify user that request is being created
-      const toast_id = toast.loading('creating user');
+      const toast_id = toast.loading('updating user');
       
       //post request to amazon API
       axios.put('https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members', {
@@ -87,12 +87,11 @@ export default function NewMember() {
         //update notifaction as success
         toast.update(toast_id, 
           { 
-            render: "User created!", 
+            render: "User updated!", 
             type: "success", 
             isLoading: false, 
             autoClose: 3000 
           });
-        formik.resetForm();
       }).catch((err)=>{
         //update notifaction as error
         toast.update(toast_id, 
