@@ -24,7 +24,7 @@ export default function NewMember() {
 
   useEffect(()=>{
     setIsLoading(true);
-    axios.get(`https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/object/${member_id}`)
+    axios.get(`https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/info/${member_id}`)
       .then((response)=>{
         setMember(response.data)
         setIsLoading(false);
