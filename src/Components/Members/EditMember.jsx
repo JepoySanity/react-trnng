@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link, useParams } from "react-router-dom"
 import { Typography, TextField, Button, Grid, Paper } from "@mui/material";
 import { useFormik } from "formik";
-import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
 import axios from "axios";
 import CreateIcon from '@mui/icons-material/Create';
@@ -70,14 +69,12 @@ export default function NewMember() {
 
     //form onSubmit handler
     onSubmit: (values) => {
-      //generate uuid
-      const uid = uuidv4();
       //notify user that request is being created
       const toast_id = toast.loading('updating user');
       
       //post request to amazon API
       axios.put('https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members', {
-        id: uid,
+        id: member.id,
         name: values.name,
         status: values.status,
         email: values.email,
@@ -108,7 +105,7 @@ export default function NewMember() {
   return (
     <>
       <Grid component={Paper} sx={{ p:4 }}>
-        <Typography sx={{ mb:4 }} variant="h5">UPDATE USER</Typography>
+        <Typography sx={{ mb:4 }} variant="h5">UPDATE MEMBER</Typography>
         <Button sx={{ mb:4 }} variant="contained" component={Link} to="/">Back</Button>
         <Grid
           container
@@ -128,7 +125,7 @@ export default function NewMember() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.name}</p> : null}
+            {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.name}</p> : null}
             <br />
             <TextField
               style={{ width: "500px", margin: "5px" }}
@@ -140,7 +137,7 @@ export default function NewMember() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.status}</p> : null}
+            {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.status}</p> : null}
             <br />
             <TextField
               style={{ width: "500px", margin: "5px" }}
@@ -152,7 +149,7 @@ export default function NewMember() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.email}</p> : null}
+            {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.email}</p> : null}
             <br />
             <TextField
               style={{ width: "500px", margin: "5px" }}
@@ -164,7 +161,7 @@ export default function NewMember() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.department}</p> : null}
+            {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.department}</p> : null}
             <br />
             <TextField
               style={{ width: "500px", margin: "5px" }}
@@ -176,7 +173,7 @@ export default function NewMember() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.location}</p> : null}
+            {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.location}</p> : null}
             <br />
             <Grid   
               container

@@ -99,7 +99,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.name}</p> : null}
+          {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.name}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -111,7 +111,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.status}</p> : null}
+          {formik.touched.status && formik.errors.status ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.status}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -123,7 +123,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.email}</p> : null}
+          {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.email}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -135,7 +135,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.department}</p> : null}
+          {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.department}</p> : null}
           <br />
           <TextField
             style={{ width: "500px", margin: "5px" }}
@@ -147,7 +147,7 @@ export default function NewMember() {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px'}}>{formik.errors.location}</p> : null}
+          {formik.touched.location && formik.errors.location ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.location}</p> : null}
           <br />
           <Grid   
             container
