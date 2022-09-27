@@ -19,7 +19,7 @@
       "function": {
         "membersLambda": {
           "deploymentBucketName": "amplify-memberlistingapp-dev-134524-deployment",
-          "s3Key": "amplify-builds/membersLambda-48754e6e507a415a6e63-build.zip"
+          "s3Key": "amplify-builds/membersLambda-37586663594231767546-build.zip"
         },
         "newMembersLambda": {
           "deploymentBucketName": "amplify-memberlistingapp-dev-134524-deployment",

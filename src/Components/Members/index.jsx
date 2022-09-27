@@ -83,48 +83,54 @@ export default function Index() {
         }
         <TableContainer component={Paper}>
           {isLoading ? <Spinner/> :
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Status</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell align="right">Department</TableCell>
-                  <TableCell align="right">Location</TableCell>
-                  <TableCell align="right">Modify</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {members.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
-                    <TableCell align="right">{row.email}</TableCell>
-                    <TableCell align="right">{row.department}</TableCell>
-                    <TableCell align="right">{row.location}</TableCell>
-                    <TableCell align="right">
-                      <Button variant='outlined' component={Link} 
-                        to={{ 
-                          pathname:`/member/edit/${row.id}`,
-                          state: {members: members}
-                        }}
+            <>
+              {members.length === 0 ?
+                <Typography align='center' variant="h6" sx={{p:'20px'}}>No members available</Typography>
+              :
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell align="right">Status</TableCell>
+                      <TableCell align="right">Email</TableCell>
+                      <TableCell align="right">Department</TableCell>
+                      <TableCell align="right">Location</TableCell>
+                      <TableCell align="right">Modify</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {members.map((row) => (
+                      <TableRow
+                        key={row.id}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
-                        edit
-                      </Button>
-                      &ensp;
-                      <Button variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
-                        delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.status}</TableCell>
+                        <TableCell align="right">{row.email}</TableCell>
+                        <TableCell align="right">{row.department}</TableCell>
+                        <TableCell align="right">{row.location}</TableCell>
+                        <TableCell align="right">
+                          <Button variant='outlined' component={Link} 
+                            to={{ 
+                              pathname:`/member/edit/${row.id}`,
+                              state: {members: members}
+                            }}
+                          >
+                            edit
+                          </Button>
+                          &ensp;
+                          <Button variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
+                            delete
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              }
+            </>
           }
         </TableContainer>
       </Grid>
