@@ -70,7 +70,7 @@ export default function NewMember() {
       const toast_id = toast.loading('updating user');
       
       //post request to amazon API
-      axios.put(`${process.env.REACT_APP_API_URL}/members`, {
+      axios.put(process.env.REACT_APP_API_URL + '/members', {
         id: member.id,
         name: values.name,
         status: values.status,

@@ -47,7 +47,7 @@ export default function NewMember() {
       const toast_id = toast.loading('creating user');
       
       //post request to amazon API
-      axios.post(`${process.env.REACT_APP_API_URL}/members`, {
+      axios.post(process.env.REACT_APP_API_URL + '/members', {
         id: uid,
         name: values.name,
         status: values.status,

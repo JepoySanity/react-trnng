@@ -31,7 +31,7 @@ export default function Index() {
 
     setIsLoading(true);
     setDisableCreate(true)
-    axios.get(`${process.env.REACT_APP_API_URL}/members/id`)
+    axios.get(process.env.REACT_APP_API_URL + '/members/id')
       .then((response)=>{
         setMembers(response.data);
         setIsLoading(false);
@@ -57,7 +57,7 @@ export default function Index() {
 
     setShowModal(false)
     const toast_id = toast.loading('deleting user');
-    axios.delete(`${process.env.REACT_APP_API_URL}/members/object/${memberId}`)
+    axios.delete(process.env.REACT_APP_API_URL + `/members/object/${memberId}`)
       .then((res)=>{
         toast.update(toast_id, 
           { 
