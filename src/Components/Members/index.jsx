@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import axios from 'axios';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button'
@@ -18,21 +17,21 @@ import Modal from "../Members/DeleteMember";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export default function Index() {
+
   const [members, setMembers] = useState([]);
   const [disableCreate, setDisableCreate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState();
   const [memberId, setMemberId] = useState();
-  const [refetch, setRefetch] = useState(false);
-  
+  const [refetch, setRefetch] = useState(false);  
 
   useEffect(()=>{
+
     setIsLoading(true);
     setDisableCreate(true)
-    axios.get('https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/id')
+    axios.get(`${process.env.REACT_APP_API_URL}/members/id`)
       .then((response)=>{
         setMembers(response.data);
         setIsLoading(false);
@@ -43,18 +42,22 @@ export default function Index() {
         setIsLoading(false);
         setDisableCreate(false)
       });
+
   },[refetch]) 
 
   const onDelete = (id,name) => {
+
     setMemberId(id)
     setShowModal(true)
     setModalTitle(`Are you sure you want to delete ${name}?`)
+
   }
 
   const confirmDelete = () => {
+
     setShowModal(false)
     const toast_id = toast.loading('deleting user');
-    axios.delete(`https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/object/${memberId}`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/members/object/${memberId}`)
       .then((res)=>{
         toast.update(toast_id, 
           { 
@@ -69,6 +72,7 @@ export default function Index() {
       .catch((err)=>{
         console.log(err)
       })
+
   }
 
   return (

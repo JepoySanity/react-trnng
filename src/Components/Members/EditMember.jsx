@@ -20,10 +20,10 @@ export default function NewMember() {
     department: '',
     location: '',
   });
-
+  
   useEffect(()=>{
     setIsLoading(true);
-    axios.get(`https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members/info/${member_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/members/info/${member_id}`)
       .then((response)=>{
         setMember(response.data)
         setIsLoading(false);
@@ -70,7 +70,7 @@ export default function NewMember() {
       const toast_id = toast.loading('updating user');
       
       //post request to amazon API
-      axios.put('https://2e2r2jeor6.execute-api.us-east-1.amazonaws.com/dev/members', {
+      axios.put(`${process.env.REACT_APP_API_URL}/members`, {
         id: member.id,
         name: values.name,
         status: values.status,
