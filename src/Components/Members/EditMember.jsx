@@ -135,9 +135,6 @@ export default function NewMember() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 <MenuItem value="Active">
                   Active
                 </MenuItem>
@@ -171,9 +168,6 @@ export default function NewMember() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 <MenuItem value="Dev 2">
                   Dev 2
                 </MenuItem>
