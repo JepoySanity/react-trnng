@@ -15,6 +15,10 @@ import '@aws-amplify/ui-react/styles.css'
 Amplify.configure(config)
 
 function App() {
+  // Auth.currentSession().then(res=>{
+  //   let accessToken = res.getIdToken()
+  //   console.log(accessToken.jwtToken)
+  // })
   return (
     <React.Suspense fallback="loading">
       <div className="App">

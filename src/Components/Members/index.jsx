@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Index() {
+export default function Index() {   
   const { t } = useTranslation();
   const [members, setMembers] = useState([]);
   const [disableCreate, setDisableCreate] = useState(false);
@@ -32,7 +32,11 @@ export default function Index() {
 
     setIsLoading(true);
     setDisableCreate(true)
-    axios.get(process.env.REACT_APP_API_URL + '/members/id')
+    axios.get(process.env.REACT_APP_API_URL + '/members/id',{
+      headers: {
+        'Authorization': 'eyJraWQiOiJab0dVc0lyb1ZFUnZ5QUNPRlpiUEo2VHVqeCtuaFIxS1FDblFkaWdmXC9pTT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNTJmZjVkOS0xMWViLTRjZmMtYTExNC1hMGVlNzQ0N2UzOTQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfMVVTUFFLbnBrIiwiY29nbml0bzp1c2VybmFtZSI6ImplcG95c2FuMjciLCJvcmlnaW5fanRpIjoiNGZiYjhmOGYtNTQ3YS00YWMyLWJkMTktZWQ3MjFiYjk3YzMwIiwiYXVkIjoiNTNjcTc1YmthdWFxa3VtYm02bGJ0MTFzdjEiLCJldmVudF9pZCI6IjlkODViODcyLTRhNTAtNDQwZC1iNTk2LTM1OGQyMDYxMDNlYyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjY0MzUxNTY3LCJleHAiOjE2NjQzNTUxNjcsImlhdCI6MTY2NDM1MTU2NywianRpIjoiMjNiNjdmOGQtMDY4OC00NzZlLWE0MDItOGEzOGMyNWY0YTQ2IiwiZW1haWwiOiJqb2huLmZhY3RvcmFuQGF3c3lzLWkuY29tIn0.eE1DZjsIqpX5GRYfi_v89F-eqo8rLLdJiVKYa2kEAThiP3oGUdzSjW_Mb9cYHfKx6rjDyShTbyF0PffkDn_zpbRWo1RCwY1ZndLGqUZ10hoM_3u6m1ZJX8J2WVk8672S8UJlIIkrlso9MKRwvH9WRmIidWiXJdADu9bwWCFhoJD0KCJX5SOPeLmjTDUwY4dUicvTjoI_rVkt7Ee194H0qU_66ZWcYTvtfzq9AZAXzbacIsEiHOoq4-Is9BdWGE1tuOcpAZ7HB-9zxhwzKvNVANutcti9WAwNdgjRil8B5OWNPjcbniokdn1NbtPbz2uU3XGbBkofKJjmSpkVfjeAhQ'
+      }
+    })
       .then((response)=>{
         setMembers(response.data);
         setIsLoading(false);
