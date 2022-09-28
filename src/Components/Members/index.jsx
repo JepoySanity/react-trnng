@@ -15,10 +15,11 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Spinner } from '../Spinner';
 import Modal from "../Members/DeleteMember";
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Index() {
-
+  const { t } = useTranslation();
   const [members, setMembers] = useState([]);
   const [disableCreate, setDisableCreate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,19 +50,19 @@ export default function Index() {
 
     setMemberId(id)
     setShowModal(true)
-    setModalTitle(`Are you sure you want to delete ${name}?`)
+    setModalTitle(t('are-you-sure') + ' ' + name + ' ?')
 
   }
 
   const confirmDelete = () => {
 
     setShowModal(false)
-    const toast_id = toast.loading('deleting user');
+    const toast_id = toast.loading(t('deleting-user'));
     axios.delete(process.env.REACT_APP_API_URL + `/members/object/${memberId}`)
       .then((res)=>{
         toast.update(toast_id, 
           { 
-            render: "user deleted!", 
+            render: t('user-deleted'), 
             type: "success", 
             isLoading: false, 
             autoClose: 3000 
@@ -79,27 +80,27 @@ export default function Index() {
     <>
       <Modal show={showModal} modalTitle={modalTitle} memberId={memberId} onClose={()=>setShowModal(false)} onDelete={confirmDelete}/>
       <Grid component={Paper} sx={{ p:4 }}>
-        <Typography sx={{ mb:4 }} variant="h5">LIST OF MEMBERS</Typography>
+        <Typography sx={{ mb:4 }} variant="h5">{t('list-of-members')}</Typography>
         {disableCreate ? 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;New</Button>
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         : 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;New</Button>
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         }
         <TableContainer component={Paper}>
           {isLoading ? <Spinner/> :
             <>
               {members.length === 0 ?
-                <Typography align='center' variant="h6" sx={{p:'20px'}}>No members available</Typography>
+                <Typography align='center' variant="h6" sx={{p:'20px'}}>{t('no-members-available')}</Typography>
               :
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell align="right">Status</TableCell>
-                      <TableCell align="right">Email</TableCell>
-                      <TableCell align="right">Department</TableCell>
-                      <TableCell align="right">Location</TableCell>
-                      <TableCell align="right">Modify</TableCell>
+                      <TableCell>{t('name')}</TableCell>
+                      <TableCell align="right">{t('status')}</TableCell>
+                      <TableCell align="right">{t('email')}</TableCell>
+                      <TableCell align="right">{t('department')}</TableCell>
+                      <TableCell align="right">{t('location')}</TableCell>
+                      <TableCell align="right">{t('modify')}</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -122,11 +123,11 @@ export default function Index() {
                               state: {members: members}
                             }}
                           >
-                            edit
+                            {t('edit-button')}
                           </Button>
                           &ensp;
                           <Button variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
-                            delete
+                            {t('delete-button')}
                           </Button>
                         </TableCell>
                       </TableRow>

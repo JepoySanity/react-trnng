@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useTranslation } from 'react-i18next';
 
 const style = {
   position: 'absolute',
@@ -16,7 +17,8 @@ const style = {
   p: 4,
 };
 
-export default function DeleteMember({modalTitle, show, onClose, memberId, onDelete}) {
+export default function DeleteMember({modalTitle, show, onClose, onDelete}) {
+  const { t } = useTranslation();
 
   if (!show) {
     return null;
@@ -34,9 +36,9 @@ export default function DeleteMember({modalTitle, show, onClose, memberId, onDel
             {modalTitle}
           </Typography>
           <br />
-          <Button onClick={onClose} variant="outlined">Cancel</Button>
+          <Button onClick={onClose} variant="outlined">{t('cancel-button')}</Button>
           &ensp;
-          <Button onClick={onDelete} variant="outlined" color='error'>Proceed</Button>
+          <Button onClick={onDelete} variant="outlined" color='error'>{t('proceed-button')}</Button>
         </Box>
       </Modal>
     </div>
