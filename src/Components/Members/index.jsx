@@ -15,10 +15,11 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Spinner } from '../Spinner';
 import Modal from "../Members/DeleteMember";
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Index() {
-
+  const { t } = useTranslation();
   const [members, setMembers] = useState([]);
   const [disableCreate, setDisableCreate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,17 +80,17 @@ export default function Index() {
     <>
       <Modal show={showModal} modalTitle={modalTitle} memberId={memberId} onClose={()=>setShowModal(false)} onDelete={confirmDelete}/>
       <Grid component={Paper} sx={{ p:4 }}>
-        <Typography sx={{ mb:4 }} variant="h5">LIST OF MEMBERS</Typography>
+        <Typography sx={{ mb:4 }} variant="h5">{t('list-of-members')}</Typography>
         {disableCreate ? 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;New</Button>
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         : 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;New</Button>
+          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         }
         <TableContainer component={Paper}>
           {isLoading ? <Spinner/> :
             <>
               {members.length === 0 ?
-                <Typography align='center' variant="h6" sx={{p:'20px'}}>No members available</Typography>
+                <Typography align='center' variant="h6" sx={{p:'20px'}}>{t('no-members-available')}</Typography>
               :
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
