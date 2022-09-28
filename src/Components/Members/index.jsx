@@ -50,7 +50,7 @@ export default function Index() {
 
     setMemberId(id)
     setShowModal(true)
-    setModalTitle(`Are you sure you want to delete ${name}?`)
+    setModalTitle(t('are-you-sure') + ' ' + name + ' ?')
 
   }
 
@@ -95,12 +95,12 @@ export default function Index() {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell align="right">Status</TableCell>
-                      <TableCell align="right">Email</TableCell>
-                      <TableCell align="right">Department</TableCell>
-                      <TableCell align="right">Location</TableCell>
-                      <TableCell align="right">Modify</TableCell>
+                      <TableCell>{t('name')}</TableCell>
+                      <TableCell align="right">{t('status')}</TableCell>
+                      <TableCell align="right">{t('email')}</TableCell>
+                      <TableCell align="right">{t('department')}</TableCell>
+                      <TableCell align="right">{t('location')}</TableCell>
+                      <TableCell align="right">{t('modify')}</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -123,11 +123,11 @@ export default function Index() {
                               state: {members: members}
                             }}
                           >
-                            edit
+                            {t('edit-button')}
                           </Button>
                           &ensp;
                           <Button variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
-                            delete
+                            {t('delete-button')}
                           </Button>
                         </TableCell>
                       </TableRow>

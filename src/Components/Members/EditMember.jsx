@@ -9,8 +9,10 @@ import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { Spinner } from '../Spinner';
+import { useTranslation } from "react-i18next";
 
 export default function NewMember() {
+  const { t } = useTranslation();
   const { member_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [ member, setMember ] = useState({
@@ -51,23 +53,23 @@ export default function NewMember() {
     //schema for the input validation rules
     validationSchema: Yup.object({
       name: Yup.string()
-        .max(30,"name must not exceed 30 characters")
-        .required("required"),
+        .max(30,t('30-chars'))
+        .required(t('required-field')),
       status: Yup.string()
-        .required("required"),
+        .required(t('required-field')),
       email: Yup.string()
-        .email("must be a valid email")
-        .required("required"),
+        .email(t('valid-email'))
+        .required(t('required-field')),
       department: Yup.string()
-        .required("required"),
+        .required(t('required-field')),
       location: Yup.string()
-        .required("required"),
+        .required(t('required-field')),
     }),
 
     //form onSubmit handler
     onSubmit: (values) => {
       //notify user that request is being created
-      const toast_id = toast.loading('updating user');
+      const toast_id = toast.loading(t('updating-user'));
       
       //post request to amazon API
       axios.put(process.env.REACT_APP_API_URL + '/members', {
@@ -81,7 +83,7 @@ export default function NewMember() {
         //update notifaction as success
         toast.update(toast_id, 
           { 
-            render: "User updated!", 
+            render: t('user-updated'), 
             type: "success", 
             isLoading: false, 
             autoClose: 3000 
@@ -90,7 +92,7 @@ export default function NewMember() {
         //update notifaction as error
         toast.update(toast_id, 
           { 
-            render: "An error occured, please try again later", 
+            render: t('error-occured'), 
             type: "error", 
             isLoading: false, 
             autoClose: 3000 
@@ -102,8 +104,8 @@ export default function NewMember() {
   return (
     <>
       <Grid component={Paper} sx={{ p:4 }}>
-        <Typography sx={{ mb:4 }} variant="h5">UPDATE MEMBER</Typography>
-        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/">Back</Button>
+        <Typography sx={{ mb:4 }} variant="h5">{t('edit-member')}</Typography>
+        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/">{t('back-button')}</Button>
         <Grid
           container
           spacing={0}
@@ -115,7 +117,7 @@ export default function NewMember() {
             <TextField
               style={{ width: "500px", margin: "5px" }}
               type="text"
-              label="Name"
+              label={t('name')}
               variant="outlined"
               name="name"
               value={formik.values.name}
@@ -125,10 +127,10 @@ export default function NewMember() {
             {formik.touched.name && formik.errors.name ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.name}</p> : null}
             <br />
             <FormControl sx={{ width: "500px", margin: "5px" }}>
-              <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
+              <InputLabel id="demo-simple-select-helper-label">{t('status')}</InputLabel>
               <Select
                 name="status"
-                label="Status"
+                label={t('status')}
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 value={formik.values.status}
@@ -148,7 +150,7 @@ export default function NewMember() {
             <TextField
               style={{ width: "500px", margin: "5px" }}
               type="text"
-              label="Email"
+              label={t('email')}
               variant="outlined"
               name="email"
               value={formik.values.email}
@@ -158,10 +160,10 @@ export default function NewMember() {
             {formik.touched.email && formik.errors.email ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.email}</p> : null}
             <br />
             <FormControl sx={{ width: "500px", margin: "5px" }}>
-              <InputLabel id="demo-simple-select-helper-label">Department</InputLabel>
+              <InputLabel id="demo-simple-select-helper-label">{t('department')}</InputLabel>
               <Select
                 name="department"
-                label="Department"
+                label={t('department')}
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 value={formik.values.department}
@@ -221,10 +223,10 @@ export default function NewMember() {
             {formik.touched.department && formik.errors.department ? <p style={{color: 'red', marginLeft: '5px', marginTop: '-2px', marginBottom: '-8px'}}>{formik.errors.department}</p> : null}
             <br />
             <FormControl sx={{ width: "500px", margin: "5px" }}>
-              <InputLabel id="demo-simple-select-helper-label">Location</InputLabel>
+              <InputLabel id="demo-simple-select-helper-label">{t('location')}</InputLabel>
               <Select
                 name="location"
-                label="Location"
+                label={t('location')}
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 value={formik.values.location}
@@ -253,7 +255,7 @@ export default function NewMember() {
               sx={{ mt:4 }}
             >
             <Button variant="contained" style={{ backgroundColor: 'green'}} type="submit">
-              <CreateIcon/>&ensp;Update
+              <CreateIcon/>&ensp;{t('edit-button')}
             </Button>
             </Grid>
           </form>
