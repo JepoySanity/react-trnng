@@ -37,9 +37,11 @@ i18n
                 "30-chars": "must not exceed 30 characters",
                 "valid-email": "must be a valid email",
                 "creating-user": "Creating user",
+                "user-created": "User created!",
                 "updating-user": "Updating user",
                 "user-updated": "User updated!",
-                "user-created": "User created!",
+                "deleting-user": "Deleting user",
+                "user-deleted": "User deleted",
                 "error-occured": "An error occured, please try again later",
                 "are-you-sure": "Are you sure you want to delete"
             }
@@ -69,9 +71,11 @@ i18n
                 "30-chars": "三十文字以内",
                 "valid-email": "有効な電子メールである必要があります",
                 "creating-user": "ユーザーの作成",
+                "user-created": "ユーザーが作成しました",
                 "updating-user": "ユーザーの更新",
                 "user-updated": "ユーザーが更新されました",
-                "user-created": "ユーザーが作成しました",
+                "deleting-user": "ユーザーの削除",
+                "user-deleted": "ユーザーが削除されました",
                 "error-occured": "エラーが発生しました。しばらくしてからもう一度お試しください",
                 "are-you-sure": "消去してもよろしいですか"
             }

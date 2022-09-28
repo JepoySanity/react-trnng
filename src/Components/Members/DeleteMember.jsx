@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-export default function DeleteMember({modalTitle, show, onClose, memberId, onDelete}) {
+export default function DeleteMember({modalTitle, show, onClose, onDelete}) {
   const { t } = useTranslation();
 
   if (!show) {

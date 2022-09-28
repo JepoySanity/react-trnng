@@ -57,12 +57,12 @@ export default function Index() {
   const confirmDelete = () => {
 
     setShowModal(false)
-    const toast_id = toast.loading('deleting user');
+    const toast_id = toast.loading(t('deleting-user'));
     axios.delete(process.env.REACT_APP_API_URL + `/members/object/${memberId}`)
       .then((res)=>{
         toast.update(toast_id, 
           { 
-            render: "user deleted!", 
+            render: t('user-deleted'), 
             type: "success", 
             isLoading: false, 
             autoClose: 3000 
