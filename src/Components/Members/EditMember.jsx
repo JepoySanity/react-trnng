@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { Spinner } from '../Spinner';
 import { useTranslation } from "react-i18next";
+import { Auth } from "aws-amplify";
 
 export default function NewMember() {
   const { t } = useTranslation();
@@ -22,10 +23,24 @@ export default function NewMember() {
     department: '',
     location: '',
   });
+
+  const [token, setToken] = useState('')
+
+  const getUserToken = () => {
+    Auth.currentSession().then(res=>{
+      let accessToken = res.getIdToken()
+      setToken(accessToken.jwtToken)
+    })
+  }
   
   useEffect(()=>{
+    getUserToken()
     setIsLoading(true);
-    axios.get(`${process.env.REACT_APP_API_URL}/members/info/${member_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/members/info/${member_id}`,{
+      headers: {
+        Authorization: token
+      }
+    })
       .then((response)=>{
         setMember(response.data)
         setIsLoading(false);
@@ -35,7 +50,7 @@ export default function NewMember() {
         setIsLoading(false);
         console.log(err);
       });
-  },[member_id])
+  },[member_id, token])
 
   const formik = useFormik({
     //enable initial state reinitialization

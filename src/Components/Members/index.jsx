@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Auth } from 'aws-amplify';
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -27,14 +28,22 @@ export default function Index() {
   const [modalTitle, setModalTitle] = useState();
   const [memberId, setMemberId] = useState();
   const [refetch, setRefetch] = useState(false);  
+  const [token, setToken] = useState('');
+
+  const getUserToken = () => {
+    Auth.currentSession().then(res=>{
+      let accessToken = res.getIdToken()
+      setToken(accessToken.jwtToken)
+    })
+  }
 
   useEffect(()=>{
-
+    getUserToken()
     setIsLoading(true);
     setDisableCreate(true)
     axios.get(process.env.REACT_APP_API_URL + '/members/id', {
         headers: { 
-          Authorization: 'eyJraWQiOiJab0dVc0lyb1ZFUnZ5QUNPRlpiUEo2VHVqeCtuaFIxS1FDblFkaWdmXC9pTT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNTJmZjVkOS0xMWViLTRjZmMtYTExNC1hMGVlNzQ0N2UzOTQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfMVVTUFFLbnBrIiwiY29nbml0bzp1c2VybmFtZSI6ImplcG95c2FuMjciLCJvcmlnaW5fanRpIjoiZmFjYjQwYTctYTM4Yi00MGU2LTlmZDYtODllY2Y5NzI1NWI2IiwiYXVkIjoiNTNjcTc1YmthdWFxa3VtYm02bGJ0MTFzdjEiLCJldmVudF9pZCI6IjVhZjFmZjJkLTI1OWItNGZkMi05ZDEyLWIyNGMyMmVlMmRiZCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjY0NDE1NzQ5LCJleHAiOjE2NjQ1MzAyOTYsImlhdCI6MTY2NDUyNjY5NiwianRpIjoiMjNiZGI3OWYtYjhmYS00NTFmLWIxMzktYmE2YWJlNWRjZWIwIiwiZW1haWwiOiJqb2huLmZhY3RvcmFuQGF3c3lzLWkuY29tIn0.pN2oZbZnpCLw-FqP6eVH0HosfObgMIshmESeYhYW7ZHD9aqP4qMDzcT-9q3flh3PZhB6VBRlyBXzQgRbE59XvCMFdffQ5PDWIDnwlabj8KHpPcjFSGH7ZwsQBWSvSXoZZI4h8wUbYtL-JtrThSUQCK0Jgl1HPe1Qyh0NSrRv8leDiefm0GsqdUDv1vk1QnUDJOZjkUnxNvUDYV62AIaFhUS6Fis0inokAnsstZCcTs-YGeZ0qY9zMdiOACWX1ma1vQ2x2fC4MtKkSIJo7smEcoCreaRVAwidD7KVE8Zij8uRkGCYtGT9JGfkTs78VpbfMsCTlnOCHFDkR9S5u_eAVw'
+          Authorization: token
         }
     })
       .then((response)=>{
@@ -48,7 +57,7 @@ export default function Index() {
         setDisableCreate(false)
       });
 
-  },[refetch]) 
+  },[refetch, token]) 
 
   const onDelete = (id,name) => {
 
@@ -62,7 +71,11 @@ export default function Index() {
 
     setShowModal(false)
     const toast_id = toast.loading(t('deleting-user'));
-    axios.delete(process.env.REACT_APP_API_URL + `/members/object/${memberId}`)
+    axios.delete(process.env.REACT_APP_API_URL + `/members/object/${memberId}`, {
+      headers: {
+        Authorization: token
+      }
+    })
       .then((res)=>{
         toast.update(toast_id, 
           { 
