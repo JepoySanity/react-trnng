@@ -24,7 +24,7 @@ export default function NewMember() {
     location: '',
   });
 
-  const [token, setToken] = useState('')
+  const [token, setToken] = useState()
 
   const getUserToken = () => {
     Auth.currentSession().then(res=>{

@@ -9,9 +9,25 @@ import axios from "axios";
 import CreateIcon from '@mui/icons-material/Create';
 import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
+import { Auth } from "aws-amplify";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function NewMember() {
+  const [ token, setToken ] = useState('')
   const { t } = useTranslation();
+
+  const getUserToken = () => {
+    Auth.currentSession().then(res=>{
+      let accessToken = res.getIdToken()
+      setToken(accessToken.jwtToken)
+    })
+  }
+
+  useEffect(()=>{
+    getUserToken()
+  },[])
+
   const formik = useFormik({
     //initial value of the form state
     initialValues: {
@@ -47,6 +63,9 @@ export default function NewMember() {
       
       //post request to amazon API
       axios.post(process.env.REACT_APP_API_URL + '/members', {
+        headers: {
+          Authorization: token
+        },
         id: uid,
         name: values.name,
         status: values.status,
