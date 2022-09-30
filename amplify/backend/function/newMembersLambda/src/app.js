@@ -12,6 +12,7 @@ const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const express = require('express')
+// const cors = require('cors')
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -37,6 +38,9 @@ const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
 const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
+
+// app.use(cors())
+// app.options('*', cors())
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {

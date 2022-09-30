@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^4.3.35",
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "formik": "^2.2.9",
     "i18next": "^21.9.2",

@@ -31,12 +31,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "membersLambda": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
         "newMembersLambda": {
             "Name": "string",
             "Arn": "string",
@@ -45,11 +39,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "membersAPI": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        },
         "newMembersAPI": {
             "RootUrl": "string",
             "ApiName": "string",
