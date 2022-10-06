@@ -147,7 +147,7 @@ export default function NewMember() {
                 name="status"
                 label={t('status')}
                 labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
+                id="status"
                 value={formik.values.status}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -180,7 +180,7 @@ export default function NewMember() {
                 name="department"
                 label={t('department')}
                 labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
+                id="department"
                 value={formik.values.department}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -243,7 +243,7 @@ export default function NewMember() {
                 name="location"
                 label={t('location')}
                 labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
+                id="location"
                 value={formik.values.location}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
