@@ -36,9 +36,9 @@ export default function DeleteMember({modalTitle, show, onClose, onDelete}) {
             {modalTitle}
           </Typography>
           <br />
-          <Button onClick={onClose} variant="outlined">{t('cancel-button')}</Button>
+          <Button id="cancel-button" onClick={onClose} variant="outlined">{t('cancel-button')}</Button>
           &ensp;
-          <Button onClick={onDelete} variant="outlined" color='error'>{t('proceed-button')}</Button>
+          <Button id="proceed-button" onClick={onDelete} variant="outlined" color='error'>{t('proceed-button')}</Button>
         </Box>
       </Modal>
     </div>
