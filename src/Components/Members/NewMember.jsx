@@ -99,7 +99,7 @@ export default function NewMember() {
     <>
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">{t('create-new-member')}</Typography>
-        <Button sx={{ mb:4 }} variant="contained" component={Link} to="/">{t('back-button')}</Button>
+        <Button id="back-button" sx={{ mb:4 }} variant="contained" component={Link} to="/">{t('back-button')}</Button>
         <Grid
           container
           spacing={0}
