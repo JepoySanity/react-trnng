@@ -99,9 +99,9 @@ export default function Index() {
       <Grid component={Paper} sx={{ p:4 }}>
         <Typography sx={{ mb:4 }} variant="h5">{t('list-of-members')}</Typography>
         {disableCreate ? 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
+          <Button id="create-new" sx={{ mb:4 }} variant="contained" component={Link} to="/member/new" disabled><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         : 
-          <Button sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
+          <Button id="create-new" sx={{ mb:4 }} variant="contained" component={Link} to="/member/new"><PersonAddAltIcon/>&ensp;{t('create-new')}</Button>
         }
         <TableContainer component={Paper}>
           {isLoading ? <Spinner/> :
@@ -134,7 +134,7 @@ export default function Index() {
                         <TableCell align="right">{row.department}</TableCell>
                         <TableCell align="right">{row.location}</TableCell>
                         <TableCell align="right">
-                          <Button variant='outlined' component={Link} 
+                          <Button id="edit-button" variant='outlined' component={Link} 
                             to={{ 
                               pathname:`/member/edit/${row.id}`,
                               state: {members: members}
@@ -143,7 +143,7 @@ export default function Index() {
                             {t('edit-button')}
                           </Button>
                           &ensp;
-                          <Button variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
+                          <Button id="delete-button" variant='outlined' color='error' onClick={()=>onDelete(row.id, row.name)}>
                             {t('delete-button')}
                           </Button>
                         </TableCell>
